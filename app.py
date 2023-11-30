@@ -122,6 +122,7 @@ if selected == "Data Visualization":
     
     # Add update form 
 # --- UPDATE INCOME AND EXPENSES ---
+# --- UPDATE INCOME AND EXPENSES ---
 if selected == "Update Expense":
     st.header("Update Income and Expenses")
     
@@ -148,15 +149,17 @@ if selected == "Update Expense":
 
         # Allow the user to update income
         new_incomes = {}
-        for category in existing_incomes:
-            new_amount = st.number_input(f"Enter new income for {category}:", value=existing_incomes.get(category, 0))
-            new_incomes[category] = new_amount
+        if isinstance(existing_incomes, dict):  # Check if existing_incomes is a dictionary
+            for category in existing_incomes:
+                new_amount = st.number_input(f"Enter new income for {category}:", value=existing_incomes.get(category, 0))
+                new_incomes[category] = new_amount
 
         # Allow the user to update expenses
         new_expenses = {}
-        for category in existing_expenses:
-            new_amount = st.number_input(f"Enter new expense for {category}:", value=existing_expenses.get(category, 0))
-            new_expenses[category] = new_amount
+        if isinstance(existing_expenses, dict):  # Check if existing_expenses is a dictionary
+            for category in existing_expenses:
+                new_amount = st.number_input(f"Enter new expense for {category}:", value=existing_expenses.get(category, 0))
+                new_expenses[category] = new_amount
 
         # Submit button
         submitted = st.form_submit_button("Update Income and Expenses")
