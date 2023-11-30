@@ -121,8 +121,6 @@ if selected == "Data Visualization":
             st.plotly_chart(fig, use_container_width=True)
     
     # Add update form 
-# --- UPDATE INCOME AND EXPENSES ---
-# --- UPDATE INCOME AND EXPENSES ---
 if selected == "Update Expense":
     st.header("Update Income and Expenses")
     
@@ -149,6 +147,7 @@ if selected == "Update Expense":
 
         # Allow the user to update income
         new_incomes = {}
+        print(f"Existing Incomes: {existing_incomes}")
         if isinstance(existing_incomes, dict):  # Check if existing_incomes is a dictionary
             for category in existing_incomes:
                 new_amount = st.number_input(f"Enter new income for {category}:", value=existing_incomes.get(category, 0))
@@ -156,6 +155,7 @@ if selected == "Update Expense":
 
         # Allow the user to update expenses
         new_expenses = {}
+        print(f"Existing Expenses: {existing_expenses}")
         if isinstance(existing_expenses, dict):  # Check if existing_expenses is a dictionary
             for category in existing_expenses:
                 new_amount = st.number_input(f"Enter new expense for {category}:", value=existing_expenses.get(category, 0))
