@@ -14,12 +14,12 @@ client = MongoClient(MONGO_URI)
 db = client[DATABASE_NAME]
 collection = db[COLLECTION_NAME]
 
-def insert_period(period, incomes, expenses, comment):
+def insert_period(period, incomes, expenses, comments):
     data = {
         "key": period,
         "income": incomes,
         "expenses": expenses,
-        "comments": comment
+        "comments": comments  # Use the correct field name and pass a list of comments
     }
     collection.insert_one(data)
 
