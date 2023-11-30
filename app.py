@@ -47,8 +47,8 @@ st.markdown(hide_st_style, unsafe_allow_html=True)
 # --- NAVIGATION MENU ---
 selected = option_menu(
     menu_title=None,
-    options=["Data Entry", "Data Visualization"],
-    icons=["pencil-fill", "bar-chart-fill"],  # https://icons.getbootstrap.com/
+    options=["Data Entry", "Data Visualization", "Update Expense", "Delete Expense"],
+    icons=["pencil-fill", "bar-chart-fill","calculator", "book"],  # https://icons.getbootstrap.com/
     orientation="horizontal",
 )
 
