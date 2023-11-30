@@ -124,6 +124,8 @@ if selected == "Data Visualization":
 # --- UPDATE EXPENSES ---
 # --- UPDATE INCOME AND EXPENSES ---
 if selected == "Update Expense":
+# --- UPDATE INCOME AND EXPENSES ---
+# if selected == "Update Income and Expenses":
     st.header("Update Income and Expenses")
     
     # Create a form to select the period and update income and expenses
@@ -131,16 +133,21 @@ if selected == "Update Expense":
         # Select period to update
         period = st.selectbox("Select Period:", get_all_periods())
         
-        # Get existing data for the selected period
-        period_data = db.get_period(period)
-        existing_incomes = period_data.get("income", {})
-        existing_expenses = period_data.get("expenses", {})
+        # Button to get existing data for the selected period
+        get_data_button = st.button("Get Existing Data")
 
-        # Display existing income and expenses for reference
-        st.write("Existing Income:")
-        st.write(existing_incomes)
-        st.write("Existing Expenses:")
-        st.write(existing_expenses)
+        # Check if the button is clicked
+        if get_data_button:
+            # Get existing data for the selected period
+            period_data = db.get_period(period)
+            existing_incomes = period_data.get("income", {})
+            existing_expenses = period_data.get("expenses", {})
+
+            # Display existing income and expenses for reference
+            st.write("Existing Income:")
+            st.write(existing_incomes)
+            st.write("Existing Expenses:")
+            st.write(existing_expenses)
 
         # Allow the user to update income
         new_incomes = {}
