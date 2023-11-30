@@ -74,7 +74,7 @@ if selected == "Data Entry":
         submitted = st.form_submit_button("Save Data")
         if submitted:
             period = str(st.session_state["year"]) + "_" + str(st.session_state["month"]) + "_" + str(st.session_state["username"])
-            income = {income: st.session_state[income] for income in incomes}
+            incomes = {income: st.session_state[income] for income in incomes}
             expenses = {expense: st.session_state[expense] for expense in expenses}
             db.insert_period(period, incomes, expenses, comment)
             st.success("Data saved!")
