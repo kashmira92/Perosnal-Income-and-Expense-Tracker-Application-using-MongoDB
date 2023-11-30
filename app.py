@@ -102,7 +102,7 @@ if selected == "Data Visualization":
             col1.metric("Total Income", f"{total_income} {currency}")
             col2.metric("Total Expense", f"{total_expense} {currency}")
             col3.metric("Remaining Budget", f"{remaining_budget} {currency}")
-            st.text(f"Comments: {comment}")
+            st.text(f"Comments: {comments}")
     
             # Create sankey chart
             label = list(incomes.keys()) + ["Total Income"] + list(expenses.keys())
