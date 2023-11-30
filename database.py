@@ -19,7 +19,7 @@ def insert_period(period, incomes, expenses, comment):
         "key": period,
         "income": incomes,
         "expenses": expenses,
-        "comment": comment
+        "comments": comment
     }
     collection.insert_one(data)
 
