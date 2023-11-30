@@ -120,29 +120,31 @@ if selected == "Data Visualization":
             fig.update_layout(margin=dict(l=0, r=0, t=5, b=5))
             st.plotly_chart(fig, use_container_width=True)
     
-    # Add update form    
-    # with st.form("update_form"):
-    #   st.write("Update Period Data")
+    # Add update form 
+ if selected == "Update Expense":
+    st.header("Update Expense")
+    with st.form("update_form"):
+      st.write("Update Period Data")
    
-    #   # Fetch data for selected period
-    #   period_data = db.get_period(period)  
-    #   incomes = period_data["incomes"]
-    #   expenses = period_data["expenses"]
-    #   comment = period_data["comment"]
+      # Fetch data for selected period
+      period_data = db.get_period(period)  
+      incomes = period_data["income"]
+      expenses = period_data["expenses"]
+      comments = period_data["comments"]
    
-    #   # Show input fields pre-filled with existing data
-    #   st.text_input("Comment", comment)
-    #   for income in incomes:
-    #     st.number_input(income, incomes[income])  
-    #   for expense in expenses:
-    #     st.number_input(expense, expenses[expense])
+      # Show input fields pre-filled with existing data
+      st.text_input("comments", comments)
+      for income in incomes:
+        st.number_input(income, incomes[income])  
+      for expense in expenses:
+        st.number_input(expense, expenses[expense])
       
-    #   submitted = st.form_submit_button("Update")
-    #   if submitted:
-    #     # Get updated data from form
-    #     new_incomes = {income: st.session_state[income] for income in incomes}
-    #     new_expenses = {expense: st.session_state[expense] for expense in expenses}
-    #     new_comment = st.session_state["Comment"]
+      submitted = st.form_submit_button("Update")
+      if submitted:
+        # Get updated data from form
+        new_incomes = {income: st.session_state[income] for income in incomes}
+        new_expenses = {expense: st.session_state[expense] for expense in expenses}
+        new_comment = st.session_state["comments"]
         
         # Update database
         db.update_period(period, new_incomes, new_expenses, new_comment)  
