@@ -26,15 +26,23 @@ def insert_period(period, incomes, expenses, comments):
 # def get_all_usernames():
     
     
-def update_period(period, incomes, expenses, comment):
-  collection.update_one(
-    {"key": period},
-    {"$set": {
-      "income": incomes,
-      "expenses": expenses, 
-      "comment": comment  
-    }}
-  )
+def update_period(period, new_incomes, new_expenses, new_comments):
+    # Define the filter to identify the document to update
+    filter_criteria = {"key": period}
+
+    # Define the new values to set
+    update_values = {
+        "$set": {
+            "income": new_incomes,
+            "expenses": new_expenses,
+            "comments": new_comments
+        }
+    }
+
+    # Update the document
+    collection.update_one(filter_criteria, update_values)
+
+
 
 def fetch_all_periods():
     items = collection.find()
