@@ -129,37 +129,28 @@ if selected == "Update Expense":
         # Select period to update
         period = st.selectbox("Select Period:", get_all_periods())
         
-        # Button to get existing data for the selected period
-        get_data_button = st.form_submit_button("Get Existing Data")
+        # Get existing data for the selected period
+        period_data = db.get_period(period)
+        existing_incomes = period_data.get("income", {})
+        existing_expenses = period_data.get("expenses", {})
 
-        # Check if the button is clicked
-        if get_data_button:
-            # Get existing data for the selected period
-            period_data = db.get_period(period)
-            existing_incomes = period_data.get("income", {})
-            existing_expenses = period_data.get("expenses", {})
-
-            # Display existing income and expenses for reference
-            st.write("Existing Income:")
-            st.write(existing_incomes)
-            st.write("Existing Expenses:")
-            st.write(existing_expenses)
+        # Display existing income and expenses for reference
+        st.write("Existing Income:")
+        st.write(existing_incomes)
+        st.write("Existing Expenses:")
+        st.write(existing_expenses)
 
         # Allow the user to update income
         new_incomes = {}
-        print(f"Existing Incomes: {str(existing_incomes)}")
-        if isinstance(existing_incomes, dict):  # Check if existing_incomes is a dictionary
-            for category in existing_incomes:
-                new_amount = st.number_input(f"Enter new income for {category}:", value=existing_incomes.get(category, 0))
-                new_incomes[category] = new_amount
+        for category in existing_incomes:
+            new_amount = st.number_input(f"Enter new income for {category}:", value=existing_incomes[category])
+            new_incomes[category] = new_amount
 
         # Allow the user to update expenses
         new_expenses = {}
-        print(f"Existing Expenses: {str(existing_expenses)}")
-        if isinstance(existing_expenses, dict):  # Check if existing_expenses is a dictionary
-            for category in existing_expenses:
-                new_amount = st.number_input(f"Enter new expense for {category}:", value=existing_expenses.get(category, 0))
-                new_expenses[category] = new_amount
+        for category in existing_expenses:
+            new_amount = st.number_input(f"Enter new expense for {category}:", value=existing_expenses[category])
+            new_expenses[category] = new_amount
 
         # Submit button
         submitted = st.form_submit_button("Update Income and Expenses")
