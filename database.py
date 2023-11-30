@@ -22,7 +22,8 @@ def insert_period(period, incomes, expenses, comment):
         "comment": comment
     }
     collection.insert_one(data)
-
+def get_all_usernames():
+    
 def update_period(period, incomes, expenses, comment):
   collection.update_one(
     {"key": period},
