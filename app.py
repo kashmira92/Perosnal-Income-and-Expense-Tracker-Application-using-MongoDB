@@ -60,7 +60,7 @@ if selected == "Data Entry":
         col1.selectbox("Select Month:", months, key="month")
         col2.selectbox("Select Year:", years, key="year")
         # col3.text_input("Enter Username:", "", key="username")
-        col3.text_area("", placeholder="Enter a comment here ...", key="username")
+        col3.text_area("", placeholder="Enter a username here ...", key="username")
         "---"
         with st.expander("Income"):
             for income in incomes:
