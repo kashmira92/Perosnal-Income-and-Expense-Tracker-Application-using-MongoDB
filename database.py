@@ -17,7 +17,7 @@ collection = db[COLLECTION_NAME]
 def insert_period(period, incomes, expenses, comment):
     data = {
         "key": period,
-        "incomes": incomes,
+        "income": incomes,
         "expenses": expenses,
         "comment": comment
     }
@@ -30,7 +30,7 @@ def update_period(period, incomes, expenses, comment):
   collection.update_one(
     {"key": period},
     {"$set": {
-      "incomes": incomes,
+      "income": incomes,
       "expenses": expenses, 
       "comment": comment  
     }}
