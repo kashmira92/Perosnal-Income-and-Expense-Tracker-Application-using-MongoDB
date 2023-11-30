@@ -59,7 +59,7 @@ if selected == "Data Entry":
         col1, col2, col3 = st.columns(3)
         col1.selectbox("Select Month:", months, key="month")
         col2.selectbox("Select Year:", years, key="year")
-        col3.text_input("Enter Username:", usernames, key="username")
+        col3.text_input("Enter Username:", "", key="username")
         "---"
         with st.expander("Income"):
             for income in incomes:
@@ -73,7 +73,7 @@ if selected == "Data Entry":
         "---"
         submitted = st.form_submit_button("Save Data")
         if submitted:
-            period = str(st.session_state["year"]) + "_" + str(st.session_state["month"])
+            period = str(st.session_state["year"]) + "_" + str(st.session_state["month"] + "_" + str(st.session_state["username]")
             incomes = {income: st.session_state[income] for income in incomes}
             expenses = {expense: st.session_state[expense] for expense in expenses}
             db.insert_period(period, incomes, expenses, comment)
