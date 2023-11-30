@@ -70,6 +70,7 @@ if selected == "Data Entry":
                 st.number_input(f"{expense}:", min_value=0, format="%i", step=10, key=expense)
         with st.expander("Comment"):
             comment = st.text_area("", placeholder="Enter a comment here ...")
+            comments = [comment]  # Convert the comment to a list
 
         "---"
         submitted = st.form_submit_button("Save Data")
@@ -77,7 +78,7 @@ if selected == "Data Entry":
             period = str(st.session_state["year"]) + "_" + str(st.session_state["month"]) + "_" + str(st.session_state["username"])
             incomes = {income: st.session_state[income] for income in incomes}
             expenses = {expense: st.session_state[expense] for expense in expenses}
-            db.insert_period(period, incomes, expenses, comment)
+            db.insert_period(period, incomes, expenses, comments)  # Pass the list of comments
             st.success("Data saved!")
 
 
