@@ -91,9 +91,9 @@ if selected == "Data Visualization":
         if submitted:
             # Get data from database
             period_data = db.get_period(period)
-            comment = period_data.get("comment")
+            comments = period_data.get("comments")
             expenses = period_data.get("expenses")
-            incomes = period_data.get("incomes")
+            incomes = period_data.get("income")
                # Create metrics
             total_income = sum(incomes.values())
             total_expense = sum(expenses.values())
