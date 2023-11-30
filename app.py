@@ -121,11 +121,8 @@ if selected == "Data Visualization":
             st.plotly_chart(fig, use_container_width=True)
     
     # Add update form 
-# --- UPDATE EXPENSES ---
 # --- UPDATE INCOME AND EXPENSES ---
 if selected == "Update Expense":
-# --- UPDATE INCOME AND EXPENSES ---
-# if selected == "Update Income and Expenses":
     st.header("Update Income and Expenses")
     
     # Create a form to select the period and update income and expenses
