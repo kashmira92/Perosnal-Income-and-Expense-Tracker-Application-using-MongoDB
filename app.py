@@ -26,7 +26,7 @@ st.title(page_title + " " + page_icon)
 # --- DROP DOWN VALUES FOR SELECTING THE PERIOD ---
 years = [datetime.today().year, datetime.today().year-2, datetime.today().year -1, datetime.today().year + 1]
 months = list(calendar.month_name[1:])
-
+# usernames = 
 # --- DATABASE INTERFACE ---
 def get_all_periods():
     items = db.fetch_all_periods()
@@ -47,7 +47,7 @@ st.markdown(hide_st_style, unsafe_allow_html=True)
 # --- NAVIGATION MENU ---
 selected = option_menu(
     menu_title=None,
-    options=["Data Entry", "Retrieve Data", "Update Expense", "Delete Expense"],
+    options=["Data Entry", "Data Visualization", "Update Expense", "Delete Expense"],
     icons=["pencil-fill", "bar-chart-fill","calculator-fill", "book-fill"],  # https://icons.getbootstrap.com/
     orientation="horizontal",
 )
@@ -56,10 +56,10 @@ selected = option_menu(
 if selected == "Data Entry":
     st.header(f"Data Entry in {currency}")
     with st.form("entry_form", clear_on_submit=True):
-        col1, col2 = st.columns(2)
+        col1, col2, col3 = st.columns(3)
         col1.selectbox("Select Month:", months, key="month")
         col2.selectbox("Select Year:", years, key="year")
-
+        col3.text_input("Enter Username:", usernames, key="username")
         "---"
         with st.expander("Income"):
             for income in incomes:
