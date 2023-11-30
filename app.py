@@ -146,30 +146,30 @@ if selected == "Update Expense":
             st.write("Existing Expenses:")
             st.write(existing_expenses)
 
-        # Allow the user to update income
-        new_incomes = {}
-        for category in existing_incomes:
-            new_amount = st.number_input(f"Enter new income for {category}:", value=existing_incomes[category])
-            new_incomes[category] = new_amount
+            # Allow the user to update income
+            new_incomes = {}
+            for category in existing_incomes:
+                new_amount = st.number_input(f"Enter new income for {category}:", value=existing_incomes[category])
+                new_incomes[category] = new_amount
 
-        # Allow the user to update expenses
-        new_expenses = {}
-        for category in existing_expenses:
-            new_amount = st.number_input(f"Enter new expense for {category}:", value=existing_expenses[category])
-            new_expenses[category] = new_amount
+            # Allow the user to update expenses
+            new_expenses = {}
+            for category in existing_expenses:
+                new_amount = st.number_input(f"Enter new expense for {category}:", value=existing_expenses[category])
+                new_expenses[category] = new_amount
 
-        # Submit button
-        submitted = st.form_submit_button("Update Income and Expenses")
+            # Submit button
+            submitted = st.form_submit_button("Update Income and Expenses")
 
-        if submitted:
-            # Update income and expenses in the database
-            db.update_period(period, new_incomes, new_expenses, [])
+            if submitted:
+                # Update income and expenses in the database
+                db.update_period(period, new_incomes, new_expenses, [])
 
-            # Display updated income and expenses
-            updated_period_data = db.get_period(period)
-            updated_incomes = updated_period_data.get("income", {})
-            updated_expenses = updated_period_data.get("expenses", {})
-            st.write("Updated Income:")
-            st.write(updated_incomes)
-            st.write("Updated Expenses:")
-            st.write(updated_expenses)
+                # Display updated income and expenses
+                updated_period_data = db.get_period(period)
+                updated_incomes = updated_period_data.get("income", {})
+                updated_expenses = updated_period_data.get("expenses", {})
+                st.write("Updated Income:")
+                st.write(updated_incomes)
+                st.write("Updated Expenses:")
+                st.write(updated_expenses)
