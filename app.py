@@ -121,31 +121,40 @@ if selected == "Data Visualization":
             st.plotly_chart(fig, use_container_width=True)
     
     # Add update form 
- if selected == "Update Expense":
-    st.header("Update Expense")
-    with st.form("update_form"):
-      st.write("Update Period Data")
-   
-      # Fetch data for selected period
-      period_data = db.get_period(period)  
-      incomes = period_data["income"]
-      expenses = period_data["expenses"]
-      comments = period_data["comments"]
-   
-      # Show input fields pre-filled with existing data
-      st.text_input("comments", comments)
-      for income in incomes:
-        st.number_input(income, incomes[income])  
-      for expense in expenses:
-        st.number_input(expense, expenses[expense])
-      
-      submitted = st.form_submit_button("Update")
-      if submitted:
-        # Get updated data from form
-        new_incomes = {income: st.session_state[income] for income in incomes}
-        new_expenses = {expense: st.session_state[expense] for expense in expenses}
-        new_comment = st.session_state["comments"]
+# --- UPDATE EXPENSES ---
+if selected == "Update Expenses":
+    st.header("Update Expenses")
+    
+    # Create a form to select the period and update expenses
+    with st.form("update_expenses"):
+        # Select period to update
+        period = st.selectbox("Select Period:", get_all_periods())
         
-        # Update database
-        db.update_period(period, new_incomes, new_expenses, new_comment)  
-        st.success("Data updated!")
+        # Get existing data for the selected period
+        period_data = db.get_period(period)
+        existing_expenses = period_data.get("expenses", {})
+
+        # Display existing expenses for reference
+        st.write("Existing Expenses:")
+        st.write(existing_expenses)
+
+        # Allow the user to update expenses
+        new_expenses = {}
+        for category in existing_expenses:
+            new_amount = st.number_input(f"Enter new expense for {category}:", value=existing_expenses[category])
+            new_expenses[category] = new_amount
+
+        # Submit button
+        submitted = st.form_submit_button("Update Expenses")
+
+        if submitted:
+            # Update expenses in the database
+            db.update_period_expenses(period, new_expenses)
+
+            # Display updated expenses
+            updated_period_data = db.get_period(period)
+            updated_expenses = updated_period_data.get("expenses", {})
+            st.write("Updated Expenses:")
+            st.write(updated_expenses)
+                                                                                                    
+         
