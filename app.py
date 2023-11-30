@@ -131,7 +131,7 @@ if selected == "Update Expense":
         period = st.selectbox("Select Period:", get_all_periods())
         
         # Button to get existing data for the selected period
-        get_data_button = st.button("Get Existing Data")
+        get_data_button = st.form_submit_button("Get Existing Data")
 
         # Check if the button is clicked
         if get_data_button:
@@ -173,6 +173,3 @@ if selected == "Update Expense":
             st.write(updated_incomes)
             st.write("Updated Expenses:")
             st.write(updated_expenses)
-
-                                                                                                    
-         
