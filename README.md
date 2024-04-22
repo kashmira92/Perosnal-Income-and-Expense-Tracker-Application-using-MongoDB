@@ -1,4 +1,4 @@
-FinFlow: Personal Finance Tracker with MongoDB and Streamlit
+# FinFlow: Personal Finance Tracker with MongoDB and Streamlit
 FinFlow is a personal finance tracker that leverages MongoDB as the backend database and Streamlit for the user interface. It streamlines finance tracking by enabling income and expense input, date-range management, budget planning, and expense trend visualizations.
 
 Table of Contents
